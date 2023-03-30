@@ -1,0 +1,113 @@
+.parent {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background-color: #e9ecef;
+  overflow: hidden;
+}
+
+.left-before {
+  content: "";
+  position: absolute;
+  top: -35%;
+  left: -5%;
+  width: 70%;
+  height: 35%;
+  background-color: #3c6e71;
+  transform-origin: right bottom;
+  transform: rotate(-20deg);
+  transition: transform 0.5s ease;
+  z-index: 2;
+}
+.left-before1{
+  content: "";
+  position: absolute;
+  top: -35%;
+  left: -5%;
+  width: 70%;
+  height: 35%;
+  background-color: #71483c;
+  transform-origin: right bottom;
+  transform: rotate(-20deg);
+  transition: transform 0.5s ease;
+  z-index: 2;
+}
+
+.left-after {
+  content: "";
+  position: absolute;
+  top: -35%;
+  right: -5%;
+  width: 70%;
+  height: 35%;
+  background-color: #d9d9d9;
+  transform-origin: left bottom;
+  transform: rotate(20deg);
+}
+
+.right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background-color: #ced4da;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.count-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Img-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Img-box{
+  height: 10rem;
+  width: 5rem;
+  margin: 0.5rem;
+  object-fit: cover;
+  overflow: hidden;
+  object-position: center;
+  transition: all 0.2s ease;
+}
+.Img-box:hover{
+  transform: scale(1.1);
+}
+
+.Img-box.selected{
+  left: 50%;
+  transform: scale(1.2);
+}
+.Img-box:not(.selected) img{
+  filter: grayscale(100%)
+}
+
+.Img{
+  width: 100%;
+  max-height: 70%;
+}
