@@ -20,10 +20,11 @@ function HelloWorld() {
   const  TriangleBg = useRef(null);
   const  TriangleBg1 = useRef(null);
   const imgContainerRef = useRef(null);
+  const imgContainerRef1 = useRef(null);
 
   useEffect(() => {
     console.log(count)
-
+    
     /*將選中的圖片移動到中間*/
     const imgContainer = imgContainerRef.current;
 
@@ -35,6 +36,19 @@ function HelloWorld() {
     imgContainerWidth / 2 - (selectedImgLeft + selectedImgWidth / 2); 
     imgContainer.style.transform = `translateX(${moveDistance}px)`;
 
+    /*將選中的圖片移動到中間*/
+    const imgContainer1 = imgContainerRef1.current;
+
+    const selectedImgWidth1 = imgContainer1.querySelector(".Img-left-box.selected").offsetWidth;
+    const selectedImgLeft1 = imgContainer1.querySelector(".Img-left-box.selected").offsetLeft;
+    const imgContainerWidth1 = imgContainer1.offsetWidth;
+
+    const moveDistance1 = 
+    imgContainerWidth1 / 2 - (selectedImgLeft1 + selectedImgWidth1 / 2); 
+    imgContainer1.style.transform = `translateX(${moveDistance1}px)`;
+
+
+    
     /*變更背景*/
     const TriangleBgCurrent = TriangleBg.current;
     const TriangleBgCurrent1 = TriangleBg1.current;
@@ -68,16 +82,26 @@ function HelloWorld() {
           ref={TriangleBg1}
           className="left-before1"
         ></div>
+
         <div className="left-after"></div>
-        <div className="text">
-        {pictureText.map(({text}, index1) => {
-            return (
-              <div className={index1+1 === count ? "text box" : ""} key={index1}>
-                <h5>{text}</h5>
-              </div>
-            );
+
+        <div className="left-box" ref={imgContainerRef1}>
+          {pictureText.map(({text,IMG}, index1) => {
+              return (
+                <div key={index1}>
+                  <div className={`Img-left-box ${index1+1 === count ? "selected" : ""}`}>
+                    <img className="Img-left" src={IMG} alt={`img-left-${index1}`} />
+                  </div>
+                  <div className="text">
+                    <div className={`text ${index1+1 === count ? "box" : "non"}`} >
+                      <h5>{text}</h5>
+                    </div>
+                  </div>
+                </div>
+              );
           })}
         </div>
+        
       </div>
       <div className="right">
         <div className="Img-container" ref={imgContainerRef}>
