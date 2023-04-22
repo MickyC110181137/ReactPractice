@@ -52,10 +52,10 @@ function HelloWorld() {
     /*變更背景*/
     const TriangleBgCurrent = TriangleBg.current;
     const TriangleBgCurrent1 = TriangleBg1.current;
-    if(count === 2){TriangleBgCurrent.style.background = '#52b69a'}
-    if(count === 4){TriangleBgCurrent.style.background = '#168aad'}
-    if(count === 1){TriangleBgCurrent1.style.background = '#76c893'}
-    if(count === 3){TriangleBgCurrent1.style.background = '#34a0a4'}
+    if(count === 2){TriangleBgCurrent.style.background = '#0a9396'}
+    if(count === 4){TriangleBgCurrent.style.background = '#003566'}
+    if(count === 1){TriangleBgCurrent1.style.background = '#8d99ae'}
+    if(count === 3){TriangleBgCurrent1.style.background = '#bc4749'}
     if(count === 5){TriangleBgCurrent1.style.background = '#1a759f'}
 
     /*左上旋轉*/
@@ -72,6 +72,8 @@ function HelloWorld() {
   return (
     <div className="parent">
       <div className="left">
+      {/* 上面的三角形 */}
+      <div className="left-after"></div>
         <div
           style={{ transform: `rotate(${aAngle}deg)` }}
           ref={TriangleBg}
@@ -83,10 +85,8 @@ function HelloWorld() {
           className="left-before1"
         ></div>
 
-        <div className="left-after"></div>
-
         <div className="left-box" ref={imgContainerRef1}>
-          {pictureText.map(({text,IMG}, index1) => {
+          {pictureText.map(({text,IMG,Icon}, index1) => {
               return (
                 <div key={index1}>
                   <div className={`Img-left-box ${index1+1 === count ? "selected" : ""}`}>
@@ -97,6 +97,17 @@ function HelloWorld() {
                       <h5>{text}</h5>
                     </div>
                   </div>
+                  <div className="icon" >
+                    <div className={`icon ${index1+1 === count ? "box" : "non"}`} >
+                      <img height={150} width={150} className="iconImg" src={Icon} alt={`icon-left-${index1}`} />
+                    </div>
+                  </div>
+                  <div className="avater">
+                    <div className={`avater ${index1+1 === count ? "box" : "non"}`} >
+                      <img height={500} width={500} src={IMG} alt={`icon-${index1}`} />
+                    </div>
+                  </div>
+                
                 </div>
               );
           })}
