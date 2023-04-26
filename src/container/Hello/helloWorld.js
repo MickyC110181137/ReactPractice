@@ -21,9 +21,27 @@ function HelloWorld() {
   const  TriangleBg1 = useRef(null);
   const imgContainerRef = useRef(null);
   const imgContainerRef1 = useRef(null);
+  
+
 
   useEffect(() => {
-    console.log(count)
+    
+    /*right select background*/
+    const imgBox = document.querySelector('.Img-box.selected');
+    const right = document.querySelector('.right').style;
+
+    const Changebg = ()=>{
+      console.log(count)
+      right.background = '#0a9396';
+      right.transition = "background-color 1s ease";
+    }
+    const Removebg = ()=>{
+      right.background = '#adb5bd';
+    }
+    imgBox.addEventListener('mouseover', Changebg);
+
+    imgBox.addEventListener('mouseout',  Removebg);
+
     
     /*將選中的圖片移動到中間*/
     const imgContainer = imgContainerRef.current;
@@ -55,7 +73,7 @@ function HelloWorld() {
     if(count === 2){TriangleBgCurrent.style.background = '#0a9396'}
     if(count === 4){TriangleBgCurrent.style.background = '#003566'}
     if(count === 1){TriangleBgCurrent1.style.background = '#8d99ae'}
-    if(count === 3){TriangleBgCurrent1.style.background = '#bc4749'}
+    if(count === 3){TriangleBgCurrent1.style.background = '#ffe97f'}
     if(count === 5){TriangleBgCurrent1.style.background = '#1a759f'}
 
     /*左上旋轉*/
@@ -66,6 +84,10 @@ function HelloWorld() {
       setAAngle(0);
       setBAngle(-20);
     }
+    return () => {
+      imgBox.removeEventListener('mouseover', Changebg);
+      imgBox.removeEventListener("mouseout", Removebg);
+    };
 
   }, [selectedImageIndex,count]);
 
