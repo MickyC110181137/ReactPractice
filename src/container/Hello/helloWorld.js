@@ -27,45 +27,41 @@ function HelloWorld() {
   const imgContainerRef = useRef(null);
   const imgContainerRef1 = useRef(null);
   
-
-
-  useEffect(() => {
-    
+  useEffect(()=>{
     /*right select background*/
-    const imgBox = document.querySelector('.Img-box.selected');
     const right = document.querySelector('.right').style
     const rightImg = document.querySelectorAll('.right img')
-    
-    rightImg.forEach((image, index) => {
-      const number = index + 1;
-      image.dataset.number = number; // 將圖片的數字資料存入 data-number 屬性中
-    
-      image.addEventListener("mouseover", () => {
-        const number = image.dataset.number;
-        console.log(number); // 在控制台中顯示圖片的數字
-      });
-    
-      image.addEventListener("mouseout", () => {
-        console.log(""); // 在控制台中清空顯示的數字
-      });
-    });
-   
 
-    const Changebg = ()=>{
+    const imageHoverHandler = (image, index) => {
+      const number = index + 1;
+      image.dataset.number = number;// 將圖片的數字資料存入 data-number 屬性中
       right.background = 'none';
       right.backgroundImage =`url(${right01})`;
-      right.transition = " 1s ease";
+      right.transition = " 0.5s ease";
       right.backgroundSize = "cover";
-      right.backgroundPosition = "center";
+      right.backgroundPosition = "center"; 
+      console.log(number);// 在控制台中顯示圖片的數字
     }
-    const Removebg = ()=>{
+    const imgBG1 = ()=>{
       right.backgroundImage =`url(${right02})`;
     }
     
-    imgBox.addEventListener('mouseover', Changebg);
+    rightImg.forEach((image, index) => {
+      imageHoverHandler(image, index);
+      image.addEventListener('mouseover', () => imageHoverHandler(image, index));
+      image.addEventListener("mouseout", imgBG1);
+    });
 
-    imgBox.addEventListener('mouseout',  Removebg);
+    return () => {
+      rightImg.forEach((image) => {
+        image.removeEventListener('mouseover',imageHoverHandler);
+        image.removeEventListener("mouseout", imgBG1);
+      });
+    };
+    
+  },[]);
 
+  useEffect(() => {
     
     /*將right選中的圖片移動到中間*/
     const imgContainer = imgContainerRef.current;
@@ -108,12 +104,7 @@ function HelloWorld() {
       setAAngle(0);
       setBAngle(-20);
     }
-    return () => {
-      imgBox.removeEventListener('mouseover', Changebg);
-      imgBox.removeEventListener("mouseout", Removebg);
-    };
-
-  }, [selectedImageIndex,count]);
+  }, [count]);
 
   return (
     <div className="parent">
