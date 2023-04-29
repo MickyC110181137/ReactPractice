@@ -3,7 +3,12 @@ import "./helloWorld.css";
 import { pictureImg } from "./pictureImg.js";
 import { pictureText } from "./pictureText";
 
+import right01 from "./AAA/Right01.jpg"
+import right02 from "./AAA/Right02.jpg"
+
+
 function HelloWorld() {
+  
   /*選取圖片*/
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const handleImageClick = (index) => {
@@ -28,22 +33,41 @@ function HelloWorld() {
     
     /*right select background*/
     const imgBox = document.querySelector('.Img-box.selected');
-    const right = document.querySelector('.right').style;
+    const right = document.querySelector('.right').style
+    const rightImg = document.querySelectorAll('.right img')
+    
+    rightImg.forEach((image, index) => {
+      const number = index + 1;
+      image.dataset.number = number; // 將圖片的數字資料存入 data-number 屬性中
+    
+      image.addEventListener("mouseover", () => {
+        const number = image.dataset.number;
+        console.log(number); // 在控制台中顯示圖片的數字
+      });
+    
+      image.addEventListener("mouseout", () => {
+        console.log(""); // 在控制台中清空顯示的數字
+      });
+    });
+   
 
     const Changebg = ()=>{
-      console.log(count)
-      right.background = '#0a9396';
-      right.transition = "background-color 1s ease";
+      right.background = 'none';
+      right.backgroundImage =`url(${right01})`;
+      right.transition = " 1s ease";
+      right.backgroundSize = "cover";
+      right.backgroundPosition = "center";
     }
     const Removebg = ()=>{
-      right.background = '#adb5bd';
+      right.backgroundImage =`url(${right02})`;
     }
+    
     imgBox.addEventListener('mouseover', Changebg);
 
     imgBox.addEventListener('mouseout',  Removebg);
 
     
-    /*將選中的圖片移動到中間*/
+    /*將right選中的圖片移動到中間*/
     const imgContainer = imgContainerRef.current;
 
     const selectedImgWidth = imgContainer.querySelector(".Img-box.selected").offsetWidth;
@@ -54,7 +78,7 @@ function HelloWorld() {
     imgContainerWidth / 2 - (selectedImgLeft + selectedImgWidth / 2); 
     imgContainer.style.transform = `translateX(${moveDistance}px)`;
 
-    /*將選中的圖片移動到中間*/
+    /*將left選中的圖片移動到中間*/
     const imgContainer1 = imgContainerRef1.current;
 
     const selectedImgWidth1 = imgContainer1.querySelector(".Img-left-box.selected").offsetWidth;
@@ -136,7 +160,7 @@ function HelloWorld() {
         </div>
         
       </div>
-      <div className="right">
+      <div className="right" >
         <div className="Img-container" ref={imgContainerRef}>
           {pictureImg.map(({ avatar, name }, index) => {
             return (
