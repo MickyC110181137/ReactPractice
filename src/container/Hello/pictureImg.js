@@ -9,27 +9,27 @@ import aa05 from "./AAA/aa05.png";
 export const pictureImg = [
     {
         avatar: aa01,
-        name:"年",
+        name:"A",
         id:1,
     },
     {
         avatar: aa02,
-        name:"星雄",
+        name:"B",
         id:2,
     },
     {
         avatar: aa03,
-        name:"格拉尼",
+        name:"C",
         id:3,
     },
     {
         avatar: aa04,
-        name:"雷蛇",
+        name:"D",
         id:4,
     },
     {
         avatar: aa05,
-        name:"凜冬",
+        name:"E",
         id:5,
     },
   ];

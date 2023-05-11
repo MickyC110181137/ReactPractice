@@ -5,6 +5,9 @@ import { pictureText } from "./pictureText";
 
 import right01 from "./AAA/Right01.jpg"
 import right02 from "./AAA/Right02.jpg"
+import right03 from "./AAA/Right03.jpg"
+import right04 from "./AAA/Right04.jpg"
+import right05 from "./AAA/Right05.jpg"
 
 
 function HelloWorld() {
@@ -14,6 +17,7 @@ function HelloWorld() {
   const handleImageClick = (index) => {
     setSelectedImageIndex(index);
     setCount(index +1)
+    _x.current = index +1
   };
 
   /*左上旋轉*/
@@ -26,7 +30,8 @@ function HelloWorld() {
   const  TriangleBg1 = useRef(null);
   const imgContainerRef = useRef(null);
   const imgContainerRef1 = useRef(null);
-  
+  const _x = useRef(1);
+
   useEffect(()=>{
     /*right select background*/
     const right = document.querySelector('.right').style
@@ -35,30 +40,38 @@ function HelloWorld() {
     const imageHoverHandler = (image, index) => {
       const number = index + 1;
       image.dataset.number = number;// 將圖片的數字資料存入 data-number 屬性中
-      right.background = 'none';
-      right.backgroundImage =`url(${right01})`;
-      right.transition = " 0.5s ease";
+      right.transition = "0.2s ease";
+      right.transitionDelay = "0.08s";
       right.backgroundSize = "cover";
       right.backgroundPosition = "center"; 
-      console.log(number);// 在控制台中顯示圖片的數字
+      if(number === 1){right.backgroundImage =`url(${right01})`;}
+      if(number === 2){right.backgroundImage =`url(${right02})`;}
+      if(number === 3){right.backgroundImage =`url(${right03})`;}
+      if(number === 4){right.backgroundImage =`url(${right04})`;}
+      if(number === 5){right.backgroundImage =`url(${right05})`;}
+      console.log(number);
     }
+    
     const imgBG1 = ()=>{
-      right.backgroundImage =`url(${right02})`;
+      if(_x.current === 1){right.backgroundImage =`url(${right01})`}
+      if(_x.current === 2){right.backgroundImage =`url(${right02})`}
+      if(_x.current === 3){right.backgroundImage =`url(${right03})`}
+      if(_x.current === 4){right.backgroundImage =`url(${right04})`}
+      if(_x.current === 5){right.backgroundImage =`url(${right05})`}
     }
     
     rightImg.forEach((image, index) => {
-      imageHoverHandler(image, index);
+      imageHoverHandler(image, index) 
       image.addEventListener('mouseover', () => imageHoverHandler(image, index));
       image.addEventListener("mouseout", imgBG1);
     });
-
+    right.backgroundImage =`url(${right01})`
     return () => {
       rightImg.forEach((image) => {
         image.removeEventListener('mouseover',imageHoverHandler);
         image.removeEventListener("mouseout", imgBG1);
-      });
+      }); 
     };
-    
   },[]);
 
   useEffect(() => {
@@ -70,8 +83,7 @@ function HelloWorld() {
     const selectedImgLeft = imgContainer.querySelector(".Img-box.selected").offsetLeft;
     const imgContainerWidth = imgContainer.offsetWidth;
 
-    const moveDistance = 
-    imgContainerWidth / 2 - (selectedImgLeft + selectedImgWidth / 2); 
+    const moveDistance =  imgContainerWidth / 2 - (selectedImgLeft + selectedImgWidth / 2); 
     imgContainer.style.transform = `translateX(${moveDistance}px)`;
 
     /*將left選中的圖片移動到中間*/
@@ -81,8 +93,7 @@ function HelloWorld() {
     const selectedImgLeft1 = imgContainer1.querySelector(".Img-left-box.selected").offsetLeft;
     const imgContainerWidth1 = imgContainer1.offsetWidth;
 
-    const moveDistance1 = 
-    imgContainerWidth1 / 2 - (selectedImgLeft1 + selectedImgWidth1 / 2); 
+    const moveDistance1 = imgContainerWidth1 / 2 - (selectedImgLeft1 + selectedImgWidth1 / 2); 
     imgContainer1.style.transform = `translateX(${moveDistance1}px)`;
 
 
@@ -90,11 +101,12 @@ function HelloWorld() {
     /*變更背景*/
     const TriangleBgCurrent = TriangleBg.current;
     const TriangleBgCurrent1 = TriangleBg1.current;
+
     if(count === 2){TriangleBgCurrent.style.background = '#0a9396'}
     if(count === 4){TriangleBgCurrent.style.background = '#003566'}
     if(count === 1){TriangleBgCurrent1.style.background = '#8d99ae'}
     if(count === 3){TriangleBgCurrent1.style.background = '#ffe97f'}
-    if(count === 5){TriangleBgCurrent1.style.background = '#1a759f'}
+    if(count === 5){TriangleBgCurrent1.style.background = '#343a40'}
 
     /*左上旋轉*/
     if (count % 2 === 0) {
@@ -104,6 +116,7 @@ function HelloWorld() {
       setAAngle(0);
       setBAngle(-20);
     }
+    
   }, [count]);
 
   return (
@@ -151,24 +164,27 @@ function HelloWorld() {
         </div>
         
       </div>
-      <div className="right" >
-        <div className="Img-container" ref={imgContainerRef}>
-          {pictureImg.map(({ avatar, name }, index) => {
-            return (
-              <div
-                className={`Img-box ${
-                  selectedImageIndex === index ? "selected" : ""
-                }`}
-                onClick={() => handleImageClick(index)}
-                key={index}
-              >
-                <img className="Img" src={avatar} alt={`img-${index}`} />
-                <h5>{name}</h5>
-              </div>
-            );
-          })}
+      <div className="rightFather">
+        <div className="right">
+          <div className="Img-container" ref={imgContainerRef}>
+            {pictureImg.map(({ avatar, name }, index) => {
+              return (
+                <div
+                  className={`Img-box ${
+                    selectedImageIndex === index ? "selected" : ""
+                  }`}
+                  onClick={() => handleImageClick(index)}
+                  key={index}
+                >
+                  <img className="Img" src={avatar} alt={`img-${index}`} />
+                  <h5>{name}</h5>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
+      
     </div>
   );
 }
