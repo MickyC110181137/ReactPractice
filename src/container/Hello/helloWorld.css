@@ -8,7 +8,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 1180px;
+  width: 70vw;
   height: 100%;
   background: linear-gradient(to left top, #444444, #999999);
   overflow: hidden;
@@ -209,8 +209,8 @@ img[alt="img-left-4"]{
 .right {
   position: absolute;
   top: 0;
-  left: 1180px;
-  width: 480px;
+  left: 70vw;
+  width: 30vw;
   height: 100%;
   display: flex;
   flex-direction: column;
