@@ -1,13 +1,13 @@
-import left01 from "./AAA/left01.PNG";
-import left02 from "./AAA/left02.PNG";
-import left03 from "./AAA/left03.PNG";
-import left04 from "./AAA/left04.PNG";
-import left05 from "./AAA/left05.PNG";
-import Icon01 from "./AAA/ICON01.png";
-import Icon02 from "./AAA/ICON02.png";
-import Icon03 from "./AAA/ICON03.png";
-import Icon04 from "./AAA/ICON04.png";
-import Icon05 from "./AAA/ICON05.png";
+import left01 from "./IMG/left01.PNG";
+import left02 from "./IMG/left02.PNG";
+import left03 from "./IMG/left03.PNG";
+import left04 from "./IMG/left04.PNG";
+import left05 from "./IMG/left05.PNG";
+import Icon01 from "./IMG/ICON01.png";
+import Icon02 from "./IMG/ICON02.png";
+import Icon03 from "./IMG/ICON03.png";
+import Icon04 from "./IMG/ICON04.png";
+import Icon05 from "./IMG/ICON05.png";
 
 export const pictureText = [
     {

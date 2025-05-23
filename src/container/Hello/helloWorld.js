@@ -3,11 +3,11 @@ import "./helloWorld.css";
 import { pictureImg } from "./pictureImg.js";
 import { pictureText } from "./pictureText";
 
-import right01 from "./AAA/Right01.jpg"
-import right02 from "./AAA/Right02.jpg"
-import right03 from "./AAA/Right03.jpg"
-import right04 from "./AAA/Right04.jpg"
-import right05 from "./AAA/Right05.jpg"
+import right01 from "./IMG/Right01.jpg"
+import right02 from "./IMG/Right02.jpg"
+import right03 from "./IMG/Right03.jpg"
+import right04 from "./IMG/Right04.jpg"
+import right05 from "./IMG/Right05.jpg"
 
 
 function HelloWorld() {

@@ -1,8 +1,8 @@
-import aa01 from "./AAA/aa01.png";
-import aa02 from "./AAA/aa02.png";
-import aa03 from "./AAA/aa03.png";
-import aa04 from "./AAA/aa04.png";
-import aa05 from "./AAA/aa05.png";
+import aa01 from "./IMG/aa01.png";
+import aa02 from "./IMG/aa02.png";
+import aa03 from "./IMG/aa03.png";
+import aa04 from "./IMG/aa04.png";
+import aa05 from "./IMG/aa05.png";
 
 
 
